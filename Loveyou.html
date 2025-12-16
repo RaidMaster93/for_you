@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>I Love You ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#1a1b2e; --bg2:#281d3f; --accent:#ff4d6d; --accent2:#ffb3c1; --card:#ffffff10; --text:#f8f9fb;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;
+      background: radial-gradient(1200px 800px at 80% -10%, #402d62 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 0% 110%, #362652 0%, transparent 60%),
+                  linear-gradient(135deg,var(--bg1),var(--bg2));
+      overflow-x:hidden;
+    }
+    .wrap{min-height:100dvh; display:grid; place-items:center; padding:24px}
+    .card{
+      width:min(900px, 96vw); background:linear-gradient( to bottom right, #ffffff22, #ffffff05 );
+      border:1px solid #ffffff2a; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-radius:28px; padding:28px; box-shadow:0 20px 60px #00000055; position:relative; overflow:hidden;
+    }
+    .glow{position:absolute; inset:-2px; background: conic-gradient(from 180deg, #ff4d6d22, #ffd1dc22, transparent 40%, transparent 60%, #ffd1dc22, #ff4d6d22);
+      filter: blur(24px); z-index:0; opacity:0.6;}
+    header{position:relative; z-index:1; display:grid; grid-template-columns:120px 1fr; gap:18px; align-items:center}
+    .avatar{width:110px; aspect-ratio:1; border-radius:50%; border:3px solid #ffffff66; overflow:hidden; box-shadow:0 10px 30px #00000055}
+    .avatar img{width:100%;height:100%;object-fit:cover; display:block}
+    .titles h1{margin:0; font-size:clamp(28px, 6vw, 50px); font-weight:800; letter-spacing:0.5px}
+    .titles h1 .script{font-family:"Great Vibes", cursive; font-weight:400}
+    .titles p{margin:6px 0 0; opacity:0.85}
+
+    .heart{
+      width:min(240px, 45vw); margin:22px auto 4px; display:block; filter: drop-shadow(0 8px 30px #ff4d6d55);
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}}
+
+    .actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin:18px 0 6px}
+    .btn{
+      --ring:0 0 0 0 rgba(255,77,109,.5);
+      position:relative; z-index:1; appearance:none; border:none; cursor:pointer; padding:12px 18px; border-radius:14px; font-weight:700;
+      background:linear-gradient(135deg, var(--accent), #ff6b8f); color:#fff; box-shadow:0 10px 24px #ff4d6d66; transition: transform .15s ease, box-shadow .2s ease;
+    }
+    .btn.secondary{background:linear-gradient(135deg, #2f2b3a, #403352); box-shadow:0 10px 24px #00000066}
+    .btn:active{transform:translateY(1px)}
+
+    .note{margin:14px auto 0; max-width:720px; font-size:clamp(15px, 2.3vw, 18px); line-height:1.65; background:var(--card);
+      border:1px solid #ffffff2a; border-radius:20px; padding:18px 18px 18px 18px; position:relative}
+    .note .cursor{display:inline-block; width:1ch; background:#ffffffaa; animation:blink 1.1s steps(1) infinite; margin-left:2px; height:1.05em; vertical-align:-0.1em}
+    @keyframes blink{50%{background:transparent}}
+
+    footer{margin-top:20px; opacity:0.9; font-size:14px; text-align:center}
+
+    /* floating hearts */
+    .float-heart{position:fixed; left:var(--x); top:var(--y); pointer-events:none; transform:translate(-50%,-50%) scale(0.8);
+      animation: rise 2.8s ease-in forwards; filter: drop-shadow(0 4px 12px #ff4d6d66)}
+    @keyframes rise{0%{opacity:0; transform:translate(-50%,-10%) scale(0.6)} 10%{opacity:1}
+      100%{opacity:0; transform:translate(-50%,-120vh) scale(1.3)}}
+
+    /* modal */
+    dialog{background:linear-gradient(180deg,#1f1a2c,#2a1f3f); color:var(--text); border:1px solid #ffffff2a; border-radius:18px; padding:0; width:min(720px,92vw)}
+    dialog::backdrop{background:#00000088; backdrop-filter: blur(6px)}
+    .modal-header{display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid #ffffff22}
+    .modal-body{padding:16px 18px 22px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; background:#ffffff12; border:1px solid #ffffff20; margin:8px 8px 0 0}
+
+    /* small screens */
+    @media (max-width:560px){
+      header{grid-template-columns:84px 1fr}
+      .avatar{width:84px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="glow" aria-hidden="true"></div>
+      <header>
+        <!-- Replace the image src with your favorite photo of you two -->
+        <div class="avatar">
+          <img src="Us_together3.png" alt="Us together" />
+        </div>
+        <div class="titles">
+          <!-- Put her name here -->
+          <h1><span class="script">I love you,</span> <span id="herName">Pookie</span> ❤️</h1>
+          <p>Forever and always — <span id="today"></span></p>
+        </div>
+      </header>
+
+      <!-- Cute pulsing heart (SVG) -->
+      <svg class="heart" viewBox="0 0 92 86" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#ff4d6d"/>
+            <stop offset="100%" stop-color="#ff8fab"/>
+          </linearGradient>
+        </defs>
+        <path id="heartPath" d="M46.1 80.7C-30.3 35.9 18.2-14.4 46.1 13.3 74-14.4 121.9 35.9 46.1 80.7z" fill="url(#g)">
+          <animate attributeName="transform" values="scale(1); scale(1.08); scale(1)" dur="1.6s" repeatCount="indefinite" additive="replace"/>
+        </path>
+      </svg>
+
+      <div class="actions">
+        <button class="btn" id="btnSurprise">Tap for a surprise ✨</button>
+        <button class="btn secondary" id="btnLetter">Open love letter 💌</button>
+      </div>
+
+      <p class="note" id="typewriter" aria-live="polite"></p>
+
+      <footer>
+        Made with <span aria-label="love" title="love">❤️</span> by <span id="yourName">— Bauwaa</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal Love Letter -->
+  <dialog id="letterModal">
+    <div class="modal-header">
+      <strong>My little love letter 💌</strong>
+      <button class="btn" id="closeModal" style="padding:8px 12px; font-size:14px;">Close</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-top:0">Hey <strong id="herNameModal">Betuu</strong>,</p>
+      <p>
+        Thank you for making ordinary moments magical. I promise to choose you, to cheer for you, and to love you a little more every day. 
+        Here are just a few reasons why you’re my forever person:
+      </p>
+      <div id="reasons" style="display:flex; flex-wrap:wrap;">
+        <span class="chip">Your smile lights up everything</span>
+        <span class="chip">You believe in me</span>
+        <span class="chip">Your warm hugs</span>
+        <span class="chip">How kind your heart is</span>
+        <span class="chip">We laugh at the same silly things</span>
+        <span class="chip">You make every day better</span>
+      </div>
+      <p style="margin-top:16px">Forever yours, <strong id="meSigned">Nitin Singh</strong> ❤️</p>
+    </div>
+  </dialog>
+
+  <script>
+    // ========= Quick Personalize =========
+    const HER_NAME = "Betuu";   // 👉 change to her name, e.g., "Ananya"
+    const YOUR_NAME = "Your Bauwaa"; // 👉 change to your name
+
+    // ========= Basic Setup =========
+    const elName = document.getElementById('herName');
+    const elNameModal = document.getElementById('herNameModal');
+    const elMe = document.getElementById('yourName');
+    const elMeSigned = document.getElementById('meSigned');
+    elName.textContent = HER_NAME; elNameModal.textContent = HER_NAME;
+    elMe.textContent = `— ${YOUR_NAME}`; elMeSigned.textContent = YOUR_NAME;
+    document.getElementById('today').textContent = new Date().toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
+
+    // ========= Typewriter Note =========
+    const note = `I didn\'t know that a heart could feel so full until you walked into my life.\n\nNo matter the day, no matter the distance, it\'s always you. Today, tomorrow, and all the days after — I choose you.`;
+    const typeEl = document.getElementById('typewriter');
+    function typeWriter(text, el, speed=20){
+      el.innerHTML = '';
+      let i = 0; const cursor = document.createElement('span'); cursor.className = 'cursor'; el.appendChild(cursor);
+      const write = ()=>{
+        if(i < text.length){
+          const ch = text[i++];
+          cursor.insertAdjacentText('beforebegin', ch);
+          if(ch==='\n') cursor.insertAdjacentHTML('beforebegin','<br/>');
+          setTimeout(write, ch===' ' ? speed/4 : speed);
+        }
+      };
+      write();
+    }
+    typeWriter(note, typeEl);
+
+    // ========= Surprise: floating hearts + confetti =========
+    const btnSurprise = document.getElementById('btnSurprise');
+    btnSurprise.addEventListener('click', ()=>{
+      burstConfetti();
+      for(let i=0;i<22;i++) setTimeout(spawnHeart, i*80);
+    });
+
+    function spawnHeart(){
+      const h = document.createElement('div');
+      h.className = 'float-heart';
+      const x = Math.random()*100, y = 110 + Math.random()*10;
+      h.style.setProperty('--x', x+'vw'); h.style.setProperty('--y', y+'vh');
+      h.innerHTML = `<svg width="40" height="36" viewBox="0 0 92 86"><path fill="#ff4d6d" d="M46.1 80.7C-30.3 35.9 18.2-14.4 46.1 13.3 74-14.4 121.9 35.9 46.1 80.7z"/></svg>`;
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 3000);
+    }
+
+    // Simple confetti without libraries
+    function burstConfetti(){
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.style.position='fixed'; canvas.style.inset=0; canvas.style.pointerEvents='none';
+      canvas.width = innerWidth; canvas.height = innerHeight; document.body.appendChild(canvas);
+      const pieces = Array.from({length:150},()=>({
+        x: Math.random()*canvas.width,
+        y: -20 - Math.random()*canvas.height*0.3,
+        w: 6+Math.random()*6,
+        h: 8+Math.random()*12,
+        vy: 2+Math.random()*3,
+        vx: (Math.random()-0.5)*2,
+        rot: Math.random()*Math.PI,
+        vr: (Math.random()-0.5)*0.2,
+        c: Math.random()<0.5 ? '#ff4d6d' : '#ffb3c1'
+      }));
+      let t=0, maxT=1800;
+      (function anim(){
+        t+=16; ctx.clearRect(0,0,canvas.width,canvas.height);
+        pieces.forEach(p=>{ p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr; if(p.y>canvas.height+40) p.y=-20; });
+        pieces.forEach(p=>{ ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.c; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore(); });
+        if(t<maxT) requestAnimationFrame(anim); else canvas.remove();
+      })();
+    }
+
+    // ========= Modal =========
+    const modal = document.getElementById('letterModal');
+    document.getElementById('btnLetter').addEventListener('click', ()=> modal.showModal());
+    document.getElementById('closeModal').addEventListener('click', ()=> modal.close());
+
+    // Accessibility: close modal with Esc as well (native), and click backdrop
+    modal.addEventListener('click', (e)=>{ const r = modal.getBoundingClientRect(); if(!(e.clientY>r.top && e.clientY<r.bottom && e.clientX>r.left && e.clientX<r.right)) modal.close(); });
+  </script>
+</body>
+</html>
